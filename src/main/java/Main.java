@@ -9,14 +9,11 @@ public class Main {
     public static void main(String[] args) {
 
         Meat meat_1 = new Meat(5, 100, false);
-        Apple apple_red = new Apple(10, 50, RED_APPLE);
-        Apple apple_green = new Apple(8, 60, GREEN_APPLE);
-        Food[] food_array = {meat_1, apple_red, apple_green};
-        ShoppingCart cart = new ShoppingCart(food_array);
-        System.out.println("Общая сумма товаров без скидки: " + cart.getSumWithoutDiscount());
-        System.out.println("Общая сумма товаров со скидкой: " + cart.getSumWithDiscount());
-        System.out.println("Сумма всех вегетарианских продуктов без скидки: " + cart.getSumVegWithoutDiscount());
-
+        Apple appleRed = new Apple(10, 50, RED_APPLE);
+        Apple appleGreen = new Apple(8, 60, GREEN_APPLE);
+        Food[] foodArray = {meat_1, appleRed, appleGreen};
+        ShoppingCart cart = new ShoppingCart(foodArray);
+        System.out.printf("Общая сумма товаров без скидки: %.1f \nОбщая сумма товаров со скидкой: %.1f \nСумма всех вегетарианских продуктов без скидки: %.1f", cart.getSumWithoutDiscount(), cart.getSumWithDiscount(), cart.getSumVegWithoutDiscount());
     }
 
 }

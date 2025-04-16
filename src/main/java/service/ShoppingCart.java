@@ -3,43 +3,39 @@ import model.Food;
 
 public class ShoppingCart {
 
-    Food[] sc_food_array;
-    public ShoppingCart(Food[] ext_food_array){
-        this.sc_food_array = new Food[ext_food_array.length];
-        for (int i = 0; i < ext_food_array.length; i++){
-            sc_food_array[i] = ext_food_array[i];
+    Food[] scFoodArray;
+
+    public ShoppingCart(Food[] extFoodArray){
+        this.scFoodArray = new Food[extFoodArray.length];
+        for (int i = 0; i < extFoodArray.length; i++){
+            scFoodArray[i] = extFoodArray[i];
         }
     }
 
     public double getSumWithoutDiscount(){
         double sum = 0;
-        for(int i = 0; i < sc_food_array.length; i++){
-            sum = sum + (sc_food_array[i].getPrice() *  sc_food_array[i].getAmount());
+        for (Food food : scFoodArray) {
+            sum += food.getPrice() * food.getAmount();
         }
         return sum;
     }
-
 
     public double getSumWithDiscount(){
         double sum = 0;
-        double discount = 0;
-        for(int i = 0; i < sc_food_array.length; i++){
-            discount = sc_food_array[i].getPrice() * sc_food_array[i].getDiscount() / 100;
-            sum = sum + ((sc_food_array[i].getPrice() - discount) * sc_food_array[i].getAmount());
-
+        for (Food food : scFoodArray) {
+            double discount = food.getPrice() * food.getDiscount() / 100;
+            sum += (food.getPrice() - discount) * food.getAmount();
         }
         return sum;
     }
 
-
     public double getSumVegWithoutDiscount(){
         double sum = 0;
-        for(int i = 0; i < sc_food_array.length; i++) {
-            if (sc_food_array[i].isVegetarian()) {
-                sum = sum + (sc_food_array[i].getPrice() * sc_food_array[i].getAmount());
+        for (Food food : scFoodArray) {
+            if (food.isVegetarian()) {
+                sum += food.getPrice() * food.getAmount();
             }
         }
         return sum;
     }
-
 }
